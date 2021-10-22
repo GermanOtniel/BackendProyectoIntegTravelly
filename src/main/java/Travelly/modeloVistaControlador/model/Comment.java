@@ -14,12 +14,14 @@ public class Comment {
     @ManyToOne
     @JoinColumn(name="user_id")
     private User user;
-    @Column(name = "car_id")
-    private Long carId;
+    @Column(name = "user_id")
+    private Long userID;
 
     @ManyToOne
     @JoinColumn(name="recommendation_id")
     private Recommendation recommendation;
+    @Column(name = "recommendation_id")
+    private Long recommendationId;
     private String comment;
     @CreationTimestamp
     @Column(name = "created_at")
