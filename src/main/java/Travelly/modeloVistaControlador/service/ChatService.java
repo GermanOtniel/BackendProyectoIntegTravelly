@@ -1,11 +1,8 @@
 package Travelly.modeloVistaControlador.service;
 
-import java.util.Collection;
-
-import Travelly.modeloVistaControlador.model.Comment;
+import Travelly.modeloVistaControlador.model.Chat;
 import org.springframework.data.repository.CrudRepository;
 
 import javax.persistence.criteria.CriteriaBuilder;
-public interface CommentService extends CrudRepository<Comment, Integer> {
-
+public interface ChatService extends CrudRepository<Chat, Integer> {
 }

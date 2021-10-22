@@ -47,10 +47,4 @@ public class CommentRest {
         commentService.save(comment);
         return new ResponseEntity<>("Comment is created successfully", HttpStatus.CREATED);
     }
-
-
-
-
-
-
 }

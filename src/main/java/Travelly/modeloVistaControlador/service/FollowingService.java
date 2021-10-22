@@ -1,11 +1,8 @@
 package Travelly.modeloVistaControlador.service;
 
-import java.util.Collection;
-
-import Travelly.modeloVistaControlador.model.Comment;
+import Travelly.modeloVistaControlador.model.Following;
 import org.springframework.data.repository.CrudRepository;
 
 import javax.persistence.criteria.CriteriaBuilder;
-public interface CommentService extends CrudRepository<Comment, Integer> {
-
+public interface FollowingService extends CrudRepository<Following, Integer>{
 }
