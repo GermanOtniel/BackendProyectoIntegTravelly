@@ -22,6 +22,11 @@ public class RecommendationRest {
         return new ResponseEntity<>(recommendationService.findAll(), HttpStatus.OK);
     }
 
+    @GetMapping(path= "/recommendations/{id}")
+    public ResponseEntity<Object> getRecommendation(@PathVariable("id") Integer id) {
+        return new ResponseEntity<>(recommendationService.findById(id), HttpStatus.OK);
+    }
+
     @PutMapping(path = "/recommendations/{id}")
     public ResponseEntity<Object>
     updateUser(@PathVariable("id") Integer id, @RequestBody Recommendation recommendation) {

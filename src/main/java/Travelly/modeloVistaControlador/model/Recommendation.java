@@ -12,7 +12,9 @@ public class Recommendation {
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name = "recommendation_id")
     private int recommID;
-    private int categoryId;
+    @ManyToOne
+    @JoinColumn(name="category_id")
+    private Category category;
     private String summary;
     private String text;
     private int userId;
@@ -28,13 +30,20 @@ public class Recommendation {
         this.recommID = recommID;
     }
 
-    public int getCategoryID() {
-        return categoryId;
+    public Category getCategory() {
+        return category;
     }
 
-    public void setCategoryID(int categoryID) {
-        this.categoryId = categoryID;
+    public void setCategory(Category category) {
+        this.category = category;
     }
+//    public int getCategoryID() {
+//        return categoryId;
+//    }
+//
+//    public void setCategoryID(int categoryID) {
+//        this.categoryId = categoryID;
+//    }
 
     public String getSummary() {
         return summary;
