@@ -9,23 +9,23 @@ import javax.persistence.*;
 public class Likes {
     @Id
     @Column(name = "user_id")
-    private int userID;
-    private int recommID;
+    private int userId;
+    private int recommendationId;
 
-    public int getUserID() {
-        return userID;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setUserID(int userID) {
-        this.userID = userID;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
-    public int getRecommID() {
-        return recommID;
+    public int getRecommendationId() {
+        return recommendationId;
     }
 
-    public void setRecommID(int recommID) {
-        this.recommID = recommID;
+    public void setRecommendationId(int recommendationId) {
+        this.recommendationId = recommendationId;
     }
 }
 
