@@ -11,8 +11,10 @@ public class Media {
   @GeneratedValue(strategy= GenerationType.AUTO)
   @Column(name = "media_id")
   private int mediaId;
-  private int userID;
-  private int recommID;
+  private int userId;
+  @ManyToOne
+  @JoinColumn(name="recommendation_id")
+  private Recommendation recommendation;
   private String content;
   private String mediaType;
 
@@ -28,18 +30,24 @@ public class Media {
   public void setMediaId(int mediaId) {
     this.mediaId = mediaId;
   }
-  public int getUserID() {
-    return userID;
+  public int getUserId() {
+    return userId;
   }
-  public void setUserID(int userID) {
-    this.userID = userID;
+  public void setUserId(int userID) {
+    this.userId = userID;
   }
-  public int getRecommID() {
-    return recommID;
+  public Recommendation getRecommendation() {
+    return recommendation;
   }
-  public void setRecommID(int recommID) {
-    this.recommID = recommID;
+  public void setRecommendation(Recommendation recommendation) {
+    this.recommendation = recommendation;
   }
+  // public int getRecommID() {
+  //   return recommID;
+  // }
+  // public void setRecommID(int recommID) {
+  //   this.recommID = recommID;
+  // }
   public String getContent() {
     return content;
   }
