@@ -11,7 +11,7 @@ public class Media {
   @GeneratedValue(strategy= GenerationType.AUTO)
   @Column(name = "media_id")
   private int mediaId;
-  private int userID;
+  private int userId;
   private int recommID;
   private String content;
   private String mediaType;
@@ -28,11 +28,11 @@ public class Media {
   public void setMediaId(int mediaId) {
     this.mediaId = mediaId;
   }
-  public int getUserID() {
-    return userID;
+  public int getUserId() {
+    return userId;
   }
-  public void setUserID(int userID) {
-    this.userID = userID;
+  public void setUserId(int userID) {
+    this.userId = userID;
   }
   public int getRecommID() {
     return recommID;
