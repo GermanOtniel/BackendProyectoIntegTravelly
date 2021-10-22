@@ -21,7 +21,7 @@ public class MediaRest {
   
     @PutMapping(path = "/media/{id}")
     public ResponseEntity<Object>
-    updateUser(@PathVariable("id") Integer id, @RequestBody Media media) {
+    updateMedia(@PathVariable("id") Integer id, @RequestBody Media media) {
 
         Media updatedMedia= mediaService.findById(id).get();
         updatedMedia.setContent(media.getContent());

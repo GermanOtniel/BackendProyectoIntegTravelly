@@ -12,9 +12,7 @@ public class Media {
   @Column(name = "media_id")
   private int mediaId;
   private int userId;
-  @ManyToOne
-  @JoinColumn(name="recommendation_id")
-  private Recommendation recommendation;
+  private int recommendationId;
   private String content;
   private String mediaType;
 
@@ -36,18 +34,12 @@ public class Media {
   public void setUserId(int userID) {
     this.userId = userID;
   }
-  public Recommendation getRecommendation() {
-    return recommendation;
+  public int getRecommID() {
+    return recommendationId;
   }
-  public void setRecommendation(Recommendation recommendation) {
-    this.recommendation = recommendation;
+  public void setRecommID(int recommendationId) {
+    this.recommendationId = recommendationId;
   }
-  // public int getRecommID() {
-  //   return recommID;
-  // }
-  // public void setRecommID(int recommID) {
-  //   this.recommID = recommID;
-  // }
   public String getContent() {
     return content;
   }
