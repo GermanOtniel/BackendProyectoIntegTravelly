@@ -8,24 +8,38 @@ import javax.persistence.*;
 @Table(name="likes")
 public class Likes {
     @Id
-    @Column(name = "user_id")
-    private int userId;
-    private int recommendationId;
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    @Column(name = "likes_id")
+    private int likesId;
+    @ManyToOne
+    @JoinColumn(name="user_id")
+    private User user;
+    @ManyToOne
+    @JoinColumn(name="recommendation_id")
+    private Recommendation recommendation;
 
-    public int getUserId() {
-        return userId;
+    public int getLikesId() {
+        return likesId;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setLikesId(int likesId) {
+        this.likesId = likesId;
     }
 
-    public int getRecommendationId() {
-        return recommendationId;
+    public User getUser() {
+        return user;
     }
 
-    public void setRecommendationId(int recommendationId) {
-        this.recommendationId = recommendationId;
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Recommendation getRecommendation() {
+        return recommendation;
+    }
+
+    public void setRecommendation(Recommendation recommendation) {
+        this.recommendation = recommendation;
     }
 }
 
