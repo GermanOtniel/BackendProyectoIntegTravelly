@@ -12,8 +12,14 @@ public class Following {
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name = "following_id")
     private int followID;
-    private int userId;
-    private int followedUserId;
+
+    @ManyToOne
+    @JoinColumn(name="user_id")
+    private User user;
+
+    @ManyToOne
+    @JoinColumn(name="followed_user_id")
+    private User followedUser;
 
     public int getFollowID() {
         return followID;
@@ -23,19 +29,19 @@ public class Following {
         this.followID = followID;
     }
 
-    public int getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public int getFollowedUserId() {
-        return followedUserId;
+    public User getFollowedUser() {
+        return followedUser;
     }
 
-    public void setFollowedUserId(int followedUserId) {
-        this.followedUserId = followedUserId;
+    public void setFollowedUser(User followedUser) {
+        this.followedUser = followedUser;
     }
 }

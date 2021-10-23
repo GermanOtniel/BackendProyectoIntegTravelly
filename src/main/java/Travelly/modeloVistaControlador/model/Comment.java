@@ -11,31 +11,15 @@ public class Comment {
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name = "comment_id")
     private int commID;
-    private int userId;
-    private int recommendationId;
-    /*@ManyToOne
+
+    @ManyToOne
     @JoinColumn(name="user_id")
     private User user;
+
     @ManyToOne
     @JoinColumn(name="recommendation_id")
-    private Recommendation recommendation;*/
+    private Recommendation recommendation;
     private String comment;
-
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
-    public int getRecommendationId() {
-        return recommendationId;
-    }
-
-    public void setRecommendationId(int recommendationId) {
-        this.recommendationId = recommendationId;
-    }
 
     @CreationTimestamp
     @Column(name = "created_at")
@@ -49,7 +33,7 @@ public class Comment {
         this.commID = commID;
     }
 
-    /*public User getUser() {
+    public User getUser() {
         return user;
     }
 
@@ -63,7 +47,7 @@ public class Comment {
 
     public void setRecommendation(Recommendation recommendation) {
         this.recommendation = recommendation;
-    }*/
+    }
 
     public String getComment() {
         return comment;

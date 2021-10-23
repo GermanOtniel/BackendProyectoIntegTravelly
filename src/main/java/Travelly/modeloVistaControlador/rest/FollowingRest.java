@@ -30,8 +30,8 @@ public class FollowingRest {
     updateFollowing(@PathVariable("id") Integer id, @RequestBody Following following) {
 
         Following updatedFollowing = followingService.findById(id).get();
-        updatedFollowing.setUserId(following.getUserId());
-        updatedFollowing.setFollowedUserId(following.getFollowedUserId());
+        updatedFollowing.setUser(following.getUser());
+        updatedFollowing.setFollowedUser(following.getFollowedUser());
         followingService.save(updatedFollowing);
 
         return new ResponseEntity<>(" Following is updated successsfully", HttpStatus.OK);
