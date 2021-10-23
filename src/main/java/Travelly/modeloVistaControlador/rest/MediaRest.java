@@ -38,7 +38,8 @@ public class MediaRest {
 
     @PostMapping(path = "/media")
     public ResponseEntity<Object> createMedia(@RequestBody Media media) {
-
+        // System.out.println(media.getUser().getUserId());
+        // System.out.println(media.getRecommendation().getRecommID());
         mediaService.save(media);
         return new ResponseEntity<>("Media is created successfully", HttpStatus.CREATED);
     }
