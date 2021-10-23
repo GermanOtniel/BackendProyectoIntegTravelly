@@ -1,5 +1,6 @@
 package Travelly.modeloVistaControlador.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
@@ -9,19 +10,23 @@ import java.util.Date;
 @Table(name="users")
 public class User {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "user_id")
     private int userId;
     private String name;
     private String email;
     private Date birthday;
+    @JsonIgnore
     private String password;
     private String profilePicture;
     private String telephone;
+    @JsonIgnore
     @CreationTimestamp
     private Date createdAt;
+    @JsonIgnore
     @CreationTimestamp
     private Date updatedAt;
+    @JsonIgnore
     @CreationTimestamp
     private Date lastLogin;
 
