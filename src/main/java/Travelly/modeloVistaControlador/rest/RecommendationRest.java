@@ -12,6 +12,7 @@ import Travelly.modeloVistaControlador.model.Recommendation;
 import Travelly.modeloVistaControlador.service.RecommendationService;
 
 @Controller
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class RecommendationRest {
     @Autowired
     RecommendationService recommendationService;
