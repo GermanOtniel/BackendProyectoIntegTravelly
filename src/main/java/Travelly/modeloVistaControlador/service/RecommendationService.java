@@ -1,13 +1,13 @@
 package Travelly.modeloVistaControlador.service;
 
-import java.util.Collection;
+import java.util.List;
+
 import Travelly.modeloVistaControlador.model.Recommendation;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
-import javax.persistence.criteria.CriteriaBuilder;
 public interface RecommendationService extends CrudRepository<Recommendation, Integer> {
-    /*public abstract void createRecommendation(Recommendation recommendation);
-    public abstract void updateRecommendation(int recommID,Recommendation recommendation);
-    public abstract void deleteRecommendation(int recommID);
-    public abstract Collection<Recommendation> getRecommendations();*/
+    /* Seleccionar recomendaciones de acuerdo a su categoría */
+    @Query("select r from Recommendation r where r.category.name = ?1")
+    public List<Recommendation> findAllByCategory(String category);
 }
