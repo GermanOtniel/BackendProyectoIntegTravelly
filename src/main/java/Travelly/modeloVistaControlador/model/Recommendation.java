@@ -9,7 +9,7 @@ import java.util.Date;
 @Table(name="recommendations")
 public class Recommendation {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "recommendation_id")
     private int recommID;
     @ManyToOne
@@ -37,13 +37,6 @@ public class Recommendation {
     public void setCategory(Category category) {
         this.category = category;
     }
-//    public int getCategoryID() {
-//        return categoryId;
-//    }
-//
-//    public void setCategoryID(int categoryID) {
-//        this.categoryId = categoryID;
-//    }
 
     public String getSummary() {
         return summary;

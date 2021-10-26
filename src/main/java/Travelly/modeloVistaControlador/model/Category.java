@@ -6,21 +6,10 @@ import javax.persistence.*;
 @Table(name = "categories")
 public class Category {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "category_id")
     int categoryId;
     String name;
-
- /*   @OneToMany(mappedBy="category")
-    List<Recommendation> recommendations;
-
-    public List<Recommendation> getRecommendations() {
-        return recommendations;
-    }
-
-    public void setRecommendations(List<Recommendation> recommendations) {
-        this.recommendations = recommendations;
-    }*/
 
     public int getCategoryId() {
         return categoryId;
