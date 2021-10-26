@@ -21,6 +21,7 @@ public class User {
     private String password;
     private String profilePicture;
     private String telephone;
+    private String token;
     @JsonIgnore
     @CreationTimestamp
     private Date createdAt;
@@ -111,5 +112,13 @@ public class User {
 
     public void setLastLogin(Date lastLogin) {
         this.lastLogin = lastLogin;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }
