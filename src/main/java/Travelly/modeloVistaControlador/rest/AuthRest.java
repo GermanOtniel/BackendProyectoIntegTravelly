@@ -9,6 +9,7 @@ import Travelly.modeloVistaControlador.model.User;
 import Travelly.modeloVistaControlador.service.AuthService;
 
 @RestController
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class AuthRest {
     @Autowired
     AuthService authService;
