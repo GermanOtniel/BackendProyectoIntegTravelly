@@ -27,9 +27,12 @@ public class AuthRest {
 
     @PostMapping(path = "/register")
     public ResponseEntity<Object> registerUser(@RequestBody User user) {
-//        authService.registerUser(user);
-        userService.save(user);
-        return new ResponseEntity<>("{\"text\":\"User is register successfully\"}", HttpStatus.CREATED);
+
+        User userRegistered = userService.save(user);
+        String token = getJWTToken(userRegistered.getEmail());
+        userRegistered.setAuthToken(token);
+        System.out.println();
+        return new ResponseEntity<>(userRegistered, HttpStatus.CREATED);
     }
 
     @PostMapping(path = "/login")
@@ -56,7 +59,7 @@ public class AuthRest {
                                 .map(GrantedAuthority::getAuthority)
                                 .collect(Collectors.toList()))
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + 600000))
+                .setExpiration(new Date(System.currentTimeMillis() + 6000000 * 10))
                 .signWith(SignatureAlgorithm.HS512,
                         secretKey.getBytes()).compact();
 
