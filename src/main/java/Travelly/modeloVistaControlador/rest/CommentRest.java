@@ -10,6 +10,7 @@ import Travelly.modeloVistaControlador.model.Comment;
 import Travelly.modeloVistaControlador.service.CommentService;
 
 @Controller
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class CommentRest {
     @Autowired
     CommentService commentService;

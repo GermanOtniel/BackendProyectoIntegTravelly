@@ -12,6 +12,7 @@ import Travelly.modeloVistaControlador.model.Chat;
 import Travelly.modeloVistaControlador.service.ChatService;
 
 @Controller
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class ChatRest {
     @Autowired
     ChatService chatService;

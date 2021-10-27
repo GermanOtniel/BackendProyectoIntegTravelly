@@ -8,15 +8,17 @@ import javax.persistence.*;
 @Table(name="likes")
 public class Likes {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "likes_id")
     private int likesId;
-    @ManyToOne
-    @JoinColumn(name="user_id")
-    private User user;
-    @ManyToOne
-    @JoinColumn(name="recommendation_id")
-    private Recommendation recommendation;
+//    @ManyToOne
+//    @JoinColumn(name="user_id")
+//    private User user;
+//    @ManyToOne
+//    @JoinColumn(name="recommendation_id")
+//    private Recommendation recommendation;
+    private int userId;
+    private int recommendationId;
 
     public int getLikesId() {
         return likesId;
@@ -26,7 +28,23 @@ public class Likes {
         this.likesId = likesId;
     }
 
-    public User getUser() {
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public int getRecommendationId() {
+        return recommendationId;
+    }
+
+    public void setRecommendationId(int recommendationId) {
+        this.recommendationId = recommendationId;
+    }
+
+    /*public User getUser() {
         return user;
     }
 
@@ -40,6 +58,6 @@ public class Likes {
 
     public void setRecommendation(Recommendation recommendation) {
         this.recommendation = recommendation;
-    }
+    }*/
 }
 

@@ -1,6 +1,9 @@
 package Travelly.modeloVistaControlador.rest;
 
+import Travelly.modeloVistaControlador.model.Media;
+import Travelly.modeloVistaControlador.service.MediaService;
 import Travelly.modeloVistaControlador.service.RecommendationService;
+import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +13,11 @@ import org.springframework.web.bind.annotation.*;
 import Travelly.modeloVistaControlador.model.Recommendation;
 import Travelly.modeloVistaControlador.service.RecommendationService;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
+import java.security.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -17,6 +25,9 @@ import java.util.List;
 public class RecommendationRest {
     @Autowired
     RecommendationService recommendationService;
+
+    @Autowired
+    MediaService mediaService;
 
     @GetMapping(path = "/recommendations")
     public ResponseEntity<Object> getRecommendations() {
@@ -47,8 +58,27 @@ public class RecommendationRest {
 
     @PostMapping(path = "/recommendations")
     public ResponseEntity<Object> createRecommendation(@RequestBody Recommendation recommendation) {
-        recommendationService.save(recommendation);
-        return new ResponseEntity<>("Recommendation is created successfully", HttpStatus.CREATED);
+        Recommendation recomm = recommendationService.save(recommendation);
+        for (Media media: recommendation.getUploadedMedia()) {
+            media.setRecommendationId(recomm.getRecommID());
+            mediaService.save(media);
+        }
+        //String basePath = "src/main/resources/public/";
+//        for (Media media : recommendation.getUploadedMedia()) {
+//            byte[] data = Base64.decodeBase64(media.getContent());
+//            Date date = new Date();
+//            String fileName = "media-uploaded/" + date.getTime() + ".png";
+//            try (OutputStream stream = new FileOutputStream(basePath + fileName)) {
+//                stream.write(data);
+//                media.setContent(fileName);
+//                media.setRecommendationId(recomm.getRecommID());
+//                mediaService.save(media);
+//            } catch (Exception e) {
+//                return new ResponseEntity<>("{\"text\": \"Unable to save some images\"}", HttpStatus.CONFLICT);
+//            }
+//        }
+
+        return new ResponseEntity<>("{\"text\": \"Recommendation is created successfully\"}", HttpStatus.CREATED);
     }
 
     @GetMapping(path= "/recommendations/category/{name}")

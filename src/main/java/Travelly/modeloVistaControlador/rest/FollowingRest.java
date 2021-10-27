@@ -10,6 +10,7 @@ import Travelly.modeloVistaControlador.model.Following;
 import Travelly.modeloVistaControlador.service.FollowingService;
 
 @Controller
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class FollowingRest {
     @Autowired
     FollowingService followingService;

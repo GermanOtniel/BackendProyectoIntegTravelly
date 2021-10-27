@@ -13,6 +13,7 @@ import Travelly.modeloVistaControlador.service.UserService;
 import java.util.Optional;
 
 @Controller
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class UserRest {
     @Autowired
     UserService userService;

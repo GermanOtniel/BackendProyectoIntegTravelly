@@ -8,7 +8,7 @@ import java.util.Date;
 @Table(name="comments")
 public class Comment {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "comment_id")
     private int commID;
 
@@ -16,9 +16,10 @@ public class Comment {
     @JoinColumn(name="user_id")
     private User user;
 
-    @ManyToOne
-    @JoinColumn(name="recommendation_id")
-    private Recommendation recommendation;
+//    @ManyToOne
+//    @JoinColumn(name="recommendation_id")
+//    private Recommendation recommendation;
+    private int recommendationId;
     private String comment;
 
     @CreationTimestamp
@@ -41,12 +42,20 @@ public class Comment {
         this.user = user;
     }
 
-    public Recommendation getRecommendation() {
+    /*public Recommendation getRecommendation() {
         return recommendation;
     }
 
     public void setRecommendation(Recommendation recommendation) {
         this.recommendation = recommendation;
+    }*/
+
+    public int getRecommendationId() {
+        return recommendationId;
+    }
+
+    public void setRecommendationId(int recommendationId) {
+        this.recommendationId = recommendationId;
     }
 
     public String getComment() {
@@ -56,6 +65,8 @@ public class Comment {
     public void setComment(String comments) {
         this.comment = comments;
     }
+
+
 
     public Date getCreatedAt() {
         return createdAt;

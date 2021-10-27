@@ -20,7 +20,7 @@ public class AuthRest {
     public ResponseEntity<Object> registerUser(@RequestBody User user) {
 //        authService.registerUser(user);
         userService.save(user);
-        return new ResponseEntity<>("User is register successfully", HttpStatus.CREATED);
+        return new ResponseEntity<>("{\"text\":\"User is register successfully\"}", HttpStatus.CREATED);
     }
 
     @PostMapping(path = "/login")
