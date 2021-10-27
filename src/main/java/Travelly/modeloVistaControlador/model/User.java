@@ -31,6 +31,16 @@ public class User {
     @CreationTimestamp
     private Date lastLogin;
 
+    private String authToken;
+
+    public String getAuthToken() {
+        return authToken;
+    }
+
+    public void setAuthToken(String authToken) {
+        this.authToken = authToken;
+    }
+
     public int getUserId() {
         return userId;
     }
