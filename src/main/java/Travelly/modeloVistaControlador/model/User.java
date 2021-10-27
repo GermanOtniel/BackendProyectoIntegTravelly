@@ -33,6 +33,16 @@ public class User {
 
     private String authToken;
 
+    private String aboutMe;
+
+    public String getAboutMe() {
+        return aboutMe;
+    }
+
+    public void setAboutMe(String aboutMe) {
+        this.aboutMe = aboutMe;
+    }
+
     public String getAuthToken() {
         return authToken;
     }

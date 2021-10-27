@@ -28,16 +28,16 @@ public class UserRest {
     public ResponseEntity<Object>
     updateUser(@PathVariable("id") Integer id, @RequestBody User user) {
 
-        User updatedUser= userService.findById(id).get();
+        User updatedUser = userService.findById(id).get();
         updatedUser.setBirthday(user.getBirthday());
         updatedUser.setEmail(user.getEmail());
         updatedUser.setName(user.getName());
-        updatedUser.setPassword(user.getPassword());
         updatedUser.setProfilePicture(user.getProfilePicture());
         updatedUser.setTelephone(user.getTelephone());
-        userService.save(updatedUser);
+        updatedUser.setAboutMe(user.getAboutMe());
+        User userUpdated = userService.save(updatedUser);
 
-        return new ResponseEntity<>("User is updated successsfully", HttpStatus.OK);
+        return new ResponseEntity<>(userUpdated, HttpStatus.OK);
     }
 
     @DeleteMapping(path = "/users/{id}")
