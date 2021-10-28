@@ -1,10 +1,12 @@
 package Travelly.modeloVistaControlador.rest;
 
+import Travelly.modeloVistaControlador.model.Comment;
 import Travelly.modeloVistaControlador.model.Media;
 import Travelly.modeloVistaControlador.service.MediaService;
 import Travelly.modeloVistaControlador.service.RecommendationService;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -31,8 +33,8 @@ public class RecommendationRest {
 
     @GetMapping(path = "/recommendations")
     public ResponseEntity<Object> getRecommendations() {
-
-        return new ResponseEntity<>(recommendationService.findAll(), HttpStatus.OK);
+        Sort sortByDate = Sort.by(Sort.Direction.DESC,"createdAt");
+        return new ResponseEntity<>(recommendationService.findAll(sortByDate), HttpStatus.OK);
     }
 
     @GetMapping(path= "/recommendations/{id}")
@@ -87,4 +89,9 @@ public class RecommendationRest {
         return new ResponseEntity<>(recommendations, HttpStatus.OK);
     }
 
+    @GetMapping(path = "/recommendations/{id}/comments")
+    public ResponseEntity<Object> getCommentsByRecommId(@PathVariable("id") Integer recommId){
+        List<Comment> comments = recommendationService.findAllComments(recommId);
+        return new ResponseEntity<>(comments,HttpStatus.OK);
+    }
 }

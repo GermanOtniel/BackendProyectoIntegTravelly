@@ -26,6 +26,7 @@ public class CommentRest {
         return new ResponseEntity<>(commentService.findById(id), HttpStatus.OK);
     }
 
+
     @PutMapping(path = "/comments/{id}")
     public ResponseEntity<Object>
     updateComment(@PathVariable("id") Integer id, @RequestBody Comment comment) {

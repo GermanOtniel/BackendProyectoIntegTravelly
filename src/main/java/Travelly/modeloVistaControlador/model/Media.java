@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Table(name="media")
 public class Media {
   @Id
-  @GeneratedValue(strategy= GenerationType.AUTO)
+  @GeneratedValue(strategy= GenerationType.IDENTITY)
   @Column(name = "media_id")
   private int mediaId;
 //  @ManyToOne
