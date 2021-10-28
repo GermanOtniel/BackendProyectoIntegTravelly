@@ -38,10 +38,22 @@ public class AuthRest {
     @PostMapping(path = "/login")
     public ResponseEntity<Object> loginUser(@RequestBody User user) {
 
-        User userLogged = authService.loginUser(user.getEmail(), user.getPassword());
+        User userLogged = authService.loginUser(user.getEmail());
+        if (userLogged == null) {
+            return new ResponseEntity<>(
+                    "{\"message\": \"Usuario no registrado\", \"error\": \"true\"}",
+                    HttpStatus.NOT_FOUND
+            );
+        } else {
+            if (!userLogged.getPassword().equals(user.getPassword())) {
+                return new ResponseEntity<>(
+                        "{\"message\": \"Credenciales inválidas\",  \"error\": \"true\"}",
+                        HttpStatus.UNAUTHORIZED
+                );
+            }
+        }
         String token = getJWTToken(userLogged.getEmail());
         userLogged.setAuthToken(token);
-
         return new ResponseEntity<>(userLogged, HttpStatus.OK);
     }
 
