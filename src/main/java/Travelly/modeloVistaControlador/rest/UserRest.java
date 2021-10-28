@@ -1,6 +1,7 @@
 package Travelly.modeloVistaControlador.rest;
 
 
+import Travelly.modeloVistaControlador.service.FollowingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +18,9 @@ import java.util.Optional;
 public class UserRest {
     @Autowired
     UserService userService;
+
+    @Autowired
+    FollowingService followService;
 
     @GetMapping(path = "/users")
     public ResponseEntity<Object> getUsers() {
@@ -48,15 +52,12 @@ public class UserRest {
 
     @PostMapping(path = "/users")
     public ResponseEntity<Object> createUser(@RequestBody User user) {
-        /*User newUser = new User();
-        newUser.setBirthday(user.getBirthday());
-        newUser.setEmail(user.getEmail());
-        newUser.setName(user.getName());
-        newUser.setPassword(user.getPassword());
-        newUser.setProfilePicture(user.getProfilePicture());
-        newUser.setTelephone(user.getTelephone());*/
-
         userService.save(user);
         return new ResponseEntity<>("User is created successfully", HttpStatus.CREATED);
+    }
+
+    @GetMapping(path = "/users/{id}/following")
+    public ResponseEntity<Object> getUserFollowing(@PathVariable("id") Integer id) {
+        return new ResponseEntity<>(followService.findByUserId(id), HttpStatus.OK);
     }
 }

@@ -48,6 +48,11 @@ public class ChatRest {
     @PostMapping(path = "/chats")
     public ResponseEntity<Object> createChat(@RequestBody Chat chat) {
         chatService.save(chat);
-        return new ResponseEntity<>("Chat is created successfully", HttpStatus.CREATED);
+        return new ResponseEntity<>("{\"text\": \"Chat is created successfully\"}", HttpStatus.CREATED);
+    }
+
+    @GetMapping(path = "/chats/user/{userId}/with/{otherUserId}")
+    public ResponseEntity<Object> getChatBetweenUsers(@PathVariable("userId") Integer userId, @PathVariable("otherUserId") Integer otherUserId) {
+        return new ResponseEntity<>(chatService.findConversation(userId, otherUserId), HttpStatus.OK);
     }
 }
