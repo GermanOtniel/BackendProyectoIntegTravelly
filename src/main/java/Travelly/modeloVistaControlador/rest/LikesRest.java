@@ -9,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class LikesRest {
@@ -27,10 +29,20 @@ public class LikesRest {
         return new ResponseEntity<>("Like is deleted successsfully", HttpStatus.OK);
     }
 
+    @DeleteMapping(path = "/likes/user/{userId}/recommendation/{recommId}")
+    public ResponseEntity<Object> deleteLikeByUser(
+            @PathVariable("userId") Integer userId,
+            @PathVariable("recommId") Integer recommId) {
+        List<Likes> likesToDelete = likesService.findByUserIdAndRecommendationId(userId, recommId);
+        for(Likes like: likesToDelete) {
+            likesService.deleteById(like.getLikesId());
+        }
+        return new ResponseEntity<>("{\"text\":\"Unliked successfully\"}", HttpStatus.OK);
+    }
+
     @PostMapping(path = "/likes")
     public ResponseEntity<Object> createLike(@RequestBody Likes like) {
-
         likesService.save(like);
-        return new ResponseEntity<>("Like is created successfully", HttpStatus.CREATED);
+        return new ResponseEntity<>("{\"text\":\"Like is created successfully\"}", HttpStatus.CREATED);
     }
 }
